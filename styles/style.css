@@ -15,6 +15,7 @@
 body {
     --accent-color: rgb(45, 169, 45);
     --accent-color2: rgb(29, 109, 29);
+    --accent-color3: rgb(72, 128, 64);
     --text-color: black;
     --text-color-opposite: white;
     --accent-background: rgba(31, 111, 31, 0.336);
@@ -39,7 +40,7 @@ a {
 
 footer {
     height: max-content;
-    background-color: var(--accent-color);
+    background-color: var(--accent-color3);
     display: flex;
     align-items: center;
     justify-content: space-between;
