@@ -34,6 +34,7 @@ a {
     height: max-content;
     color: var(--text-color);
     margin-inline: 0.25em;
+    cursor: pointer;
 }
 
 footer {
@@ -105,6 +106,10 @@ a:focus::after {
 
 #user-links {
     padding: .25em;
+    width: max-content;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 
 #home-link {
@@ -116,6 +121,22 @@ a:focus::after {
 #dark-mode-toggle {
     height: max-content;
     margin: 0;
+}
+
+.search-bar {
+    position: absolute;
+    width: 0px;
+    opacity: 0;
+    transition: all 350ms ease-in-out;
+    top: 15%;
+    left: 15%;
+    line-height: 1.5em;
+}
+
+.search-bar-show {
+    width: 150%;
+    left: -150%;
+    opacity: 1;
 }
 
 /* Scrollbar */

@@ -1,5 +1,7 @@
 const darkModeButton = document.getElementById("dark-mode-toggle")
 const cartCount = document.getElementById("cart-item-count")
+const searchButton = document.querySelector(".bi.bi-search")
+const searchBar = document.getElementById("search-bar")
 
 
 if(localStorage.getItem("mode") === "Dark Mode") {
@@ -14,6 +16,10 @@ darkModeButton.addEventListener('click', () => {
     document.body.classList.toggle("dark-mode")
     localStorage.setItem("mode", darkModeButton.textContent)
     darkModeButton.textContent = (darkModeButton.textContent == "Dark Mode") ? "Light Mode" : "Dark Mode"
+})
+
+searchButton.addEventListener('click', () => {
+    searchBar.classList.toggle("search-bar-show")
 })
 
 if(parseInt(cartCount.textContent) > 0) {
