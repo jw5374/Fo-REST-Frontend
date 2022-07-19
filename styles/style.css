@@ -78,6 +78,17 @@ a:focus::after {
     width: 100%;
 }
 
+a.active-link::after {
+    position: absolute;
+    content: "";
+    bottom: -0.25em;
+    left: 0;
+    width: 100%;
+    height: 0.25em;
+    background-color: var(--accent-color);
+    border-radius: 5em;
+}
+
 .cart-item-count {
     position: absolute; 
     top: -0.25em;
