@@ -33,7 +33,7 @@ a {
     width: max-content;
     height: max-content;
     color: var(--text-color);
-    margin-inline: 0.25em;
+    margin-inline: 0.5em;
     cursor: pointer;
 }
 
@@ -43,6 +43,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100vw;
     padding: 1em;
 }
 
@@ -104,8 +105,9 @@ a.active-link::after {
     font-family: NeuzitOfficeSR-Bold;
     display: flex;
     height: 15vh;
+    width: 100vw;
     align-items: center;
-    padding: 0.25em;
+    padding: 0.5em;
     justify-content: space-between;
 }
 
