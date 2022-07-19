@@ -32,6 +32,11 @@
     border-radius: 1em;
     padding: 1em;
     background-color: var(--accent-background);
+    cursor: pointer;
+}
+
+.product-container:hover {
+    background-color: var(--accent-color2);
 }
 
 .product-image {
