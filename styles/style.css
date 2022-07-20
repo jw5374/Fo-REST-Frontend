@@ -41,7 +41,7 @@ a {
 }
 
 footer {
-    height: max-content;
+    height: 17em;
     background-color: var(--accent-color3);
     display: flex;
     align-items: center;
@@ -113,6 +113,7 @@ a.active-link::after {
     align-items: center;
     padding: 0.5em;
     justify-content: space-between;
+    overflow: hidden;
 }
 
 #site-nav {
@@ -133,6 +134,16 @@ a.active-link::after {
     all: unset;
     cursor: pointer;
     width: 400px;
+}
+
+#company-info {
+    display: flex;
+    height: 100%;
+}
+
+#company-info h2, #company-info p {
+    width: max-content;
+    margin-block: 1em;
 }
 
 #dark-mode-toggle {
@@ -161,6 +172,22 @@ a.active-link::after {
     all: unset;
 }
 
+.forest-logo-header {
+    width: inherit;
+    transform: translateY(-25%);
+}
+
+.forest-logo-footer {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.info-container {
+    grid-area: info;
+    height: min-content;
+    padding-inline: 2em;
+}
 
 /* Scrollbar */
 
