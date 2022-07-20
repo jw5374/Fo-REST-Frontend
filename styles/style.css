@@ -148,6 +148,7 @@ a.active-link::after {
     top: 15%;
     left: 15%;
     line-height: 1.5em;
+    margin: 0;
 }
 
 .search-bar-show {
