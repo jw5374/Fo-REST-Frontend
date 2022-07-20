@@ -150,3 +150,8 @@ main {
 .add-to-cart:hover {
     background-color: var(--accent-color);
 }
+
+.product-link {
+    display: block;
+    width: 100%;
+}

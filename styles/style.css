@@ -157,6 +157,11 @@ a.active-link::after {
     opacity: 1;
 }
 
+.product-link::after {
+    all: unset;
+}
+
+
 /* Scrollbar */
 
 *::-webkit-scrollbar {
