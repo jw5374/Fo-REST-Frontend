@@ -33,6 +33,13 @@ button {
     width: 100%;
 }
 
+#total-price {
+    display: block;
+    align-self: flex-end;
+    margin-inline: 2em;
+    font-family: var(--font-regular);
+}
+
 #checkout-container {
     display: flex;
     align-self: flex-end;
@@ -84,14 +91,24 @@ button {
 }
 
 .product-count {
-    width: 4ch;
+    width: 6ch;
     height: max-content;
     margin-inline: 1em;
     margin-block: 0;
+}
+
+.cart-product-price {
+    margin-inline: 0.5em;
+    padding: 0.125em;
 }
 
 .remove-item-button {
     width: max-content;
     height: max-content;
     margin: 0;
+}
+
+.bi.bi-trash {
+    font-size: medium;
+    color: rgb(255, 34, 34);
 }

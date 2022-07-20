@@ -19,7 +19,9 @@ body {
     --text-color: black;
     --text-color-opposite: white;
     --accent-background: rgba(31, 111, 31, 0.336);
-    font-family: NeuzitOfficeSRPro-Regular;
+    --font-regular: NeuzitOfficeSRPro-Regular;
+    --font-bold: NeuzitOfficeSR-Bold;
+    font-family: var(--font-regular);
     padding: 0;
     margin: 0;
     overflow-x: hidden;
@@ -100,10 +102,11 @@ a.active-link::after {
     border-radius: 100%;
     text-align: center;
     background-color: var(--accent-color);
+    font-size: smaller;
 }
 
 #site-nav-bar {
-    font-family: NeuzitOfficeSR-Bold;
+    font-family: var(--font-bold);
     display: flex;
     height: 15vh;
     width: 100vw;
@@ -196,4 +199,8 @@ a.active-link::after {
     color: white;
     --text-color: white;
     background-color: rgb(20, 20, 20);
+}
+
+.bi {
+    font-size: x-large;
 }
