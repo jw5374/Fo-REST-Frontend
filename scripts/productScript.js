@@ -1,5 +1,4 @@
 const termDisplay = document.getElementById("search-term")
-const individualProduct = document.getElementById("individual-product-container")
 const productGallery = document.getElementById("product-gallery")
 
 let qParams = new URLSearchParams(window.location.search)
@@ -75,10 +74,6 @@ if(termDisplay) {
     })
 }
 
-if(individualProduct) {
-    document.title += " " + document.getElementsByClassName("product-title")[0].textContent
-}
-
 if(qParams.get("item") != null) {
     fetch(fetchPath + `/products/product/${qParams.get("item")}`, {
         method: "GET"
@@ -86,5 +81,6 @@ if(qParams.get("item") != null) {
     .then(res => res.json())
     .then((data) => {
         populateProductData(data)
+        document.title += " " + document.getElementsByClassName("product-title")[0].textContent
     })
 }
