@@ -40,7 +40,6 @@ main {
     margin: 2em;
     border-radius: 1em;
     padding: 1em;
-    background-color: var(--accent-background);
     cursor: pointer;
 }
 
@@ -53,8 +52,8 @@ main {
     aspect-ratio: 3 / 2;
     width: 300px;
     display: inline-block;
-    border: dashed 2px var(--accent-color);
     border-radius: 1em;
+    object-fit: cover;
 }
 
 .product-description-container-long {
@@ -67,6 +66,10 @@ main {
 .product-title {
     width: max-content;
     margin-top: 0;
+}
+
+.product-description {
+    color: var(--text-color2);
 }
 
 .image-gallery {
@@ -85,8 +88,8 @@ main {
     aspect-ratio: 3 / 2;
     width: 95%;
     margin: 1em;
-    border: dashed 2px var(--accent-color);
     border-radius: 1em;
+    object-fit: cover;
 }
 
 .small-product-image {
@@ -94,8 +97,8 @@ main {
     width: 25%;
     margin: 1em;
     display: block;
-    border: dashed 2px var(--accent-color);
     border-radius: 1em;
+    object-fit: contain;
 }
 
 .product-action-container {

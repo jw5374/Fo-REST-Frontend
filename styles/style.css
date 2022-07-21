@@ -18,6 +18,7 @@ body {
     --accent-color3: rgb(72, 128, 64);
     --negative-color: rgb(255, 34, 34);
     --text-color: black;
+    --text-color2: rgb(40, 40, 40);
     --text-color-opposite: white;
     --accent-background: rgba(31, 111, 31, 0.336);
     --font-regular: NeuzitOfficeSRPro-Regular;
@@ -233,6 +234,8 @@ a.active-link::after {
 .dark-mode {
     color: white;
     --text-color: white;
+    --text-color2: rgb(180, 180, 180);
+    --text-color-opposite: black;
     background-color: rgb(20, 20, 20);
 }
 

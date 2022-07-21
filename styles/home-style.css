@@ -31,7 +31,6 @@
     width: 20em;
     border-radius: 1em;
     padding: 1em;
-    background-color: var(--accent-background);
     cursor: pointer;
 }
 
@@ -43,8 +42,8 @@
     aspect-ratio: 3 / 2;
     width: 100%;
     display: block;
-    border: dashed 2px var(--accent-color);
     border-radius: 1em;
+    object-fit: cover;
 }
 
 .product-title {
