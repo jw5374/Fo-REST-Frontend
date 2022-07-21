@@ -16,6 +16,7 @@ body {
     --accent-color: rgb(45, 169, 45);
     --accent-color2: rgb(29, 109, 29);
     --accent-color3: rgb(72, 128, 64);
+    --negative-color: rgb(255, 34, 34);
     --text-color: black;
     --text-color-opposite: white;
     --accent-background: rgba(31, 111, 31, 0.336);
