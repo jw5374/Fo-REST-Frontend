@@ -1,3 +1,4 @@
+const fetchPath = "http://localhost:5000"
 const darkModeButton = document.getElementById("dark-mode-toggle")
 const cartCount = document.getElementById("cart-item-count")
 const searchButton = document.querySelector(".bi.bi-search")
