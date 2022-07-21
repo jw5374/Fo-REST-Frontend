@@ -1,0 +1,17 @@
+#profile-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 2;
+    padding-block: 2em;
+    padding-inline: 5em;
+}
+
+#profile-email {
+    color: var(--accent-color3);
+}
+
+#profile-address {
+    color: var(--accent-color3);
+}
