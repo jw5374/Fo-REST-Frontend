@@ -110,5 +110,5 @@ button {
 
 .bi.bi-trash {
     font-size: medium;
-    color: rgb(255, 34, 34);
+    color: var(--negative-color);
 }
