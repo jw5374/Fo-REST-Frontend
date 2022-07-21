@@ -25,16 +25,8 @@ main {
     grid-template-areas: 
         "gallery action"
         "gallery action";
+    grid-template-columns: min-content 1fr;
     height: auto;
-}
-
-#stock-status {
-    display: inline-block;
-    color: var(--accent-color);
-    padding: 0.5em;
-    border: solid 1px var(--accent-color);
-    border-radius: 0.25em;
-    margin-right: 1em;
 }
 
 #stock-count {
@@ -43,8 +35,8 @@ main {
 
 .product-container-long {
     display: grid;
-    grid-template-columns: 1fr, 1fr;
     grid-template-areas: "img desc";
+    grid-template-columns: min-content 1fr;
     margin: 2em;
     border-radius: 1em;
     padding: 1em;
@@ -79,7 +71,7 @@ main {
 
 .image-gallery {
     grid-area: gallery;
-    width: 60vw;
+    width: 55vw;
 }
 
 .small-image-gallery {
@@ -91,7 +83,7 @@ main {
 .large-product-image {
     display: block;
     aspect-ratio: 3 / 2;
-    width: 90%;
+    width: 95%;
     margin: 1em;
     border: dashed 2px var(--accent-color);
     border-radius: 1em;
@@ -114,6 +106,24 @@ main {
     margin: 1em;
     margin-top: 2em;
     min-height: 25%;
+}
+
+.in-stock {
+    display: inline-block;
+    color: var(--accent-color);
+    padding: 0.5em;
+    border: solid 1px var(--accent-color);
+    border-radius: 0.25em;
+    margin-right: 1em;
+}
+
+.out-of-stock {
+    display: inline-block;
+    color: var(--negative-color);
+    padding: 0.5em;
+    border: solid 1px var(--negative-color);
+    border-radius: 0.25em;
+    margin-right: 1em;
 }
 
 .purchase-container {
