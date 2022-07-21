@@ -14,7 +14,9 @@ registrationForm.addEventListener("submit", async (e) => {
             email: registrationForm.emailinput.value
         })
     }).then((res) => {
-        alert(res.text())
+        return res.text()
+    }).then((data) => {
+        alert(data) // need to change this somehow
         window.location.href = "login.html"
     })
 })
