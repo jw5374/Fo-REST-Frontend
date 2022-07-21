@@ -20,7 +20,7 @@ function createProdContainer(prodObj) {
     title.textContent = prodObj.name
 
     let price = document.createElement("span")
-    price.textContent = prodObj.price.toFixed(2)
+    price.textContent = "$" + prodObj.price.toFixed(2)
 
     prodTitleContainer.appendChild(title)
     prodTitleContainer.appendChild(price)
