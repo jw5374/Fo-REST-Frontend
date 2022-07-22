@@ -39,6 +39,8 @@ function populateProductData(prodObj) {
 }
 
 function createProdContainer(prodObj) {
+    let imgList = prodObj.imageList.split(',')
+
     let linkContainer = document.createElement("a")
     linkContainer.classList.add("product-link")
     linkContainer.href = `product.html?item=${prodObj.id}`
@@ -48,7 +50,7 @@ function createProdContainer(prodObj) {
 
     let prodImg = document.createElement("img")
     prodImg.classList.add("product-image")
-    prodImg.src = "#"
+    prodImg.src = "../assets/GundamGallery/" + imgList[imgList.length - 1]
     prodImg.alt = "product image"
 
     let descContainer = document.createElement("article")
