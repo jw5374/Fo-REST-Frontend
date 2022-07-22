@@ -4,6 +4,22 @@ const productGallery = document.getElementById("product-gallery")
 let qParams = new URLSearchParams(window.location.search)
 
 function populateProductData(prodObj) {
+    let imgList = prodObj.imageList.split(',')
+    let largeImg = imgList.pop()
+
+    let prodLargeImg = document.getElementsByClassName("large-product-image")[0]
+    prodLargeImg.src = "../assets/GundamGallery/" + largeImg
+
+    let smallGallery = document.getElementsByClassName("small-image-gallery")[0]
+
+    for(let img of imgList) {
+        let smallContainer = document.createElement("img")
+        smallContainer.classList.add("small-product-image")
+        smallContainer.alt = "small product image"
+        smallContainer.src = "../assets/GundamGallery/" + img
+        smallGallery.appendChild(smallContainer)
+    }
+
     let prodTitle = document.getElementsByClassName("product-title")[0]
     let prodDesc = document.getElementsByClassName("product-description")[0]
     let prodPrice = document.getElementsByClassName("product-price")[0]
