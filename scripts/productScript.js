@@ -24,6 +24,12 @@ function populateProductData(prodObj) {
         smallContainer.classList.add("small-product-image")
         smallContainer.alt = "small product image"
         smallContainer.src = "../assets/GundamGallery/" + img
+        smallContainer.addEventListener('click', () => {
+            let largeImg = document.getElementsByClassName("large-product-image")[0]
+            let largeSrc = largeImg.src
+            largeImg.src = smallContainer.src
+            smallContainer.src = largeSrc
+        })
         smallGallery.appendChild(smallContainer)
     }
 

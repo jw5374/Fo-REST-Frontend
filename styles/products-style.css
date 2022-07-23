@@ -89,7 +89,7 @@ main {
     width: 95%;
     margin: 1em;
     border-radius: 1em;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .small-product-image {
@@ -98,7 +98,7 @@ main {
     margin: 1em;
     display: block;
     border-radius: 1em;
-    object-fit: contain;
+    object-fit: cover;
     cursor: pointer;
 }
 
