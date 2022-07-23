@@ -137,6 +137,8 @@ saveCart.addEventListener('click', () => {
             "Authorization": `Bearer ${getAuthCookie()}`
         },
         body: JSON.stringify(cartObjs)
+    }).then(() => {
+        window.location.href = "index.html"
     })
 })
 
@@ -145,7 +147,6 @@ checkoutButton.addEventListener('click', () => {
         window.location.reload()
         return
     }
-    cartObjs = []
     localStorage.setItem("forest-cart-count", 0)
     fetch(fetchPath + "/carts/" + localStorage.getItem("forest-user") + "/checkout", {
         method: "DELETE",
@@ -154,5 +155,8 @@ checkoutButton.addEventListener('click', () => {
             "Authorization": `Bearer ${getAuthCookie()}`
         },
         body: JSON.stringify(cartObjs)
-    }).then(() => window.location.reload())
+    }).then(() => {
+        cartObjs = []
+        window.location.reload()
+    })
 })
