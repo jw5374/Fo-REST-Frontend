@@ -6,6 +6,7 @@ const logout = document.getElementById("logout-button")
 
 
 function populateProfile(userObj) {
+    document.title += " " + userObj.username
     username.textContent = userObj.username
     email.textContent = userObj.email
     address.textContent = userObj.shippingAddress == null ? "You have not set a Shipping Address yet." : userObj.shippingAddress
@@ -28,6 +29,7 @@ if(getAuthCookie() !== null) {
 
 logout.addEventListener('click', () => {
     localStorage.removeItem("forest-user")
+    localStorage.removeItem("forest-cart-count")
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/"
     window.location.href = "index.html"
 })

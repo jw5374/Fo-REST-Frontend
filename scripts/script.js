@@ -16,32 +16,52 @@ function getAuthCookie() {
     return null;
 }
 
-function checkCookie() {
+function isTokenCookiePresent() {
     let auth = getAuthCookie()
     if(auth == null) {
-        return;
+        localStorage.removeItem("forest-user")
+        return false
     }
-    fetch(fetchPath + "/auth/user", {
+    if(localStorage.getItem("forest-user") == null) {
+        return false;
+    }
+    return true
+}
+
+function checkCookieValid() {
+    if(!isTokenCookiePresent()) return;
+    profile.parentElement.href = window.location.protocol + "//" + window.location.host + "/profile.html"
+}
+
+function populateCartCount() {
+    if(!isTokenCookiePresent()) {
+        cartCount.classList.add("hide")
+        return
+    }
+    if(localStorage.getItem("forest-cart-count") != null) {
+        cartCount.textContent = localStorage.getItem("forest-cart-count")
+        if(parseInt(cartCount.textContent) > 0) {
+            cartCount.classList.remove("hide");
+        } else {
+            cartCount.classList.add("hide");
+        }
+        return
+    }
+    fetch(fetchPath + "/carts/" + localStorage.getItem("forest-user"), {
         method: "GET",
         headers: {
-            "Authorization": `Bearer ${auth}`
+            "Authorization": "Bearer " + getAuthCookie()
         }
     })
-    .then(res => {
-        if(res.status != 200) {
-            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/"
-            localStorage.removeItem("forest-user")
-            return;
+    .then(res => res.json())
+    .then((data) => {
+        localStorage.setItem("forest-cart-count", data.length)
+        cartCount.textContent = data.length
+        if(parseInt(cartCount.textContent) > 0) {
+            cartCount.classList.remove("hide");
+        } else {
+            cartCount.classList.add("hide");
         }
-        return res.text()
-    })
-    .then(data => {
-        if(data.split(" ")[0] != localStorage.getItem("forest-user")) {
-            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/"
-            localStorage.removeItem("forest-user")
-            return;
-        }
-        profile.parentElement.href = window.location.protocol + "//" + window.location.host + "/profile.html"
     })
 }
 
@@ -63,10 +83,6 @@ searchButton.addEventListener('click', () => {
     searchBar.classList.toggle("search-bar-show")
 })
 
-if(parseInt(cartCount.textContent) > 0) {
-    cartCount.classList.remove("hide");
-} else {
-    cartCount.classList.add("hide");
-}
+checkCookieValid()
 
-checkCookie()
+populateCartCount()
