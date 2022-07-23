@@ -1,7 +1,14 @@
 const termDisplay = document.getElementById("search-term")
 const productGallery = document.getElementById("product-gallery")
+const individualProductCount = document.getElementById("i-prod-count")
+const addToCartButton = document.getElementById("add-to-cart")
 
 let qParams = new URLSearchParams(window.location.search)
+
+let indProd;
+let fetchedCart;
+
+let cartcount = parseInt(localStorage.getItem("forest-cart-count"))
 
 function populateProductData(prodObj) {
     let imgList = prodObj.imageList.split(',')
@@ -17,6 +24,12 @@ function populateProductData(prodObj) {
         smallContainer.classList.add("small-product-image")
         smallContainer.alt = "small product image"
         smallContainer.src = "../assets/GundamGallery/" + img
+        smallContainer.addEventListener('click', () => {
+            let largeImg = document.getElementsByClassName("large-product-image")[0]
+            let largeSrc = largeImg.src
+            largeImg.src = smallContainer.src
+            smallContainer.src = largeSrc
+        })
         smallGallery.appendChild(smallContainer)
     }
 
@@ -77,6 +90,45 @@ function createProdContainer(prodObj) {
     return linkContainer
 }
 
+function saveNewItem() {
+    fetch(fetchPath + `/carts/${localStorage.getItem("forest-user")}`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + getAuthCookie()
+        },
+        body: JSON.stringify({
+            user: {
+                username: localStorage.getItem("forest-user")               
+            },
+            product: indProd,
+            count: individualProductCount.value
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        fetchedCart = data.cartid
+        localStorage.setItem("forest-cart-count", cartcount+1)
+        window.location.href = window.location.protocol + "//" + window.location.host + "/cart.html"
+    })
+}
+
+function updateItem() {
+    fetch(fetchPath + `/carts/${localStorage.getItem("forest-user")}/item`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + getAuthCookie()
+        },
+        body: JSON.stringify({
+            cartid: fetchedCart,
+            count: individualProductCount.value
+        })
+    }).then(() => {
+        window.location.href = window.location.protocol + "//" + window.location.host + "/cart.html"
+    })
+}
+
 if(termDisplay) {
     termDisplay.textContent += qParams.get("searchbar")
     document.title += " " +  qParams.get("searchbar")
@@ -98,7 +150,30 @@ if(qParams.get("item") != null) {
     })
     .then(res => res.json())
     .then((data) => {
+        indProd = data
         populateProductData(data)
         document.title += " " + document.getElementsByClassName("product-title")[0].textContent
     })
+
+    if(isTokenCookiePresent()) {
+        fetch(fetchPath + `/carts/${localStorage.getItem("forest-user")}/${qParams.get("item")}`, {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + getAuthCookie()
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            individualProductCount.value = data.count
+            fetchedCart = data.cartid
+            addToCartButton.addEventListener('click', updateItem)
+        })
+        .catch(() => {
+            addToCartButton.addEventListener('click', saveNewItem)
+        })
+    } else {
+        addToCartButton.addEventListener('click', () => {
+            window.location.href = window.location.protocol + "//" + window.location.host + "/login.html"
+        })
+    }
 }

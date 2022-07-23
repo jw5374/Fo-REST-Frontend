@@ -4,7 +4,7 @@ main {
     flex-direction: column;
     align-items: left;
     justify-content: center;
-    box-shadow: inset 0  10px 70px -30px black;
+    background: linear-gradient(to top, var(--text-color-opposite), 90%, var(--text-color3));
 }
 
 #product-gallery {
@@ -89,7 +89,7 @@ main {
     width: 95%;
     margin: 1em;
     border-radius: 1em;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .small-product-image {
@@ -98,7 +98,8 @@ main {
     margin: 1em;
     display: block;
     border-radius: 1em;
-    object-fit: contain;
+    object-fit: cover;
+    cursor: pointer;
 }
 
 .product-action-container {
@@ -142,13 +143,14 @@ main {
 }
 
 .product-count {
+    margin-top: 0.5em;
     padding: 0.75em;
-    width: 8ch;
+    width: 10ch;
     margin-right: 20%;
 }
 
 
-.add-to-cart {
+#add-to-cart {
     padding: 0.75em;
     width: 60%;
     height: 3em;

@@ -15,3 +15,8 @@
 #profile-address {
     color: var(--accent-color3);
 }
+
+#logout-button {
+    display: inline-block;
+    margin-top: 4.125em;
+}
