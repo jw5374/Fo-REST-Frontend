@@ -18,12 +18,17 @@ loginForm.addEventListener("submit", async (e) => {
     .then((res) => {
         return res.json()
     }).then((data) => {
+        if(data.error) {
+            throw new Error("Invalid Credentials")
+        }
         let date = new Date();
         date.setTime(date.getTime() + 7*24*60*60*1000)
         localStorage.setItem("forest-user", data.username)
         console.log(`token=${data.token}; expires=${date.toUTCString()}; path=/`, data)
         document.cookie += `token=${data.token}; expires=${date.toUTCString()}; path=/`
         window.location.href = "index.html"
+    }).catch((err) => {
+        alert(err)
     })
 })
 
