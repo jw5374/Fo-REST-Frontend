@@ -139,6 +139,12 @@ a.active-link::after {
     width: 400px;
 }
 
+#home-link:hover::after,
+#home-link:active::after,
+#home-link:focus::after {
+    width: 0%;
+}
+
 #company-info {
     display: flex;
     height: 100%;
