@@ -1,5 +1,8 @@
 const loginForm = document.getElementById("user-form")
 
+if(isTokenCookiePresent()) {
+    window.location.href = "profile.html"
+}
 
 loginForm.addEventListener("submit", async (e) => {
     e.preventDefault()
@@ -31,4 +34,3 @@ loginForm.addEventListener("submit", async (e) => {
         alert(err)
     })
 })
-
