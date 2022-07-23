@@ -87,6 +87,7 @@ function createCartItem(cartObj) {
         .then(res => res.json())
         .then(() => {
             cartCount.textContent = parseInt(cartCount.textContent) - 1
+            localStorage.setItem("forest-cart-count", cartCount.textContent)
             removeCart(productContainer.dataset.cartid)
         })
     })
