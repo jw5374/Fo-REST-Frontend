@@ -4,7 +4,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: inset 0  10px 70px -30px black;
+    background: linear-gradient(to top, var(--text-color-opposite), 90%, var(--text-color3));
     width: 100vw;
 }
 
