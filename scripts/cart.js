@@ -95,8 +95,11 @@ function createCartItem(cartObj) {
     })
 
     productCount.addEventListener("change", () => {
-        let maxVal = parseInt(productCount.max)
-        let minVal = parseInt(productCount.min)
+        let maxVal = cartObj.product.count
+        let minVal = 0
+        if(productCount.value === "") {
+            productCount.value = minVal
+        }
         if(productCount.value > maxVal) {
             productCount.value = maxVal
         }

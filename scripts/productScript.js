@@ -180,6 +180,17 @@ if(qParams.get("item") != null) {
     .then((data) => {
         indProd = data
         populateProductData(data)
+        individualProductCount.addEventListener('change', () => {
+            if(individualProductCount.value === "") {
+                individualProductCount.value = 1
+            }
+            if(individualProductCount.value > data.count) {
+                individualProductCount.value = data.count
+            }
+            if(individualProductCount.value < 1) {
+                individualProductCount.value = 1
+            }
+        })
         document.title += " " + document.getElementsByClassName("product-title")[0].textContent
     })
 
