@@ -4,6 +4,14 @@ if(isTokenCookiePresent()) {
     window.location.href = "profile.html"
 }
 
+loginForm.passinput.addEventListener('change', () => {
+    loginForm.passinput.value = loginForm.passinput.value.replace(/\s+/g, "")
+})
+
+loginForm.usernameinput.addEventListener('change', () => {
+    loginForm.usernameinput.value = loginForm.usernameinput.value.replace(/\s+/g, "")
+})
+
 loginForm.addEventListener("submit", async (e) => {
     e.preventDefault()
     let hashedWord = hex_sha256(loginForm.passinput.value)
