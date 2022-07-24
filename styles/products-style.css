@@ -1,4 +1,5 @@
 main {
+    width: 100vw;
     min-height: 80vh;
     display: flex;
     flex-direction: column;
@@ -37,9 +38,9 @@ main {
     display: grid;
     grid-template-areas: "img desc";
     grid-template-columns: min-content 1fr;
-    margin: 2em;
+    margin: var(--product-container-long-margin);
     border-radius: 1em;
-    padding: 1em;
+    padding: var(--product-container-long-padding);
     cursor: pointer;
 }
 
@@ -50,7 +51,7 @@ main {
 .product-image {
     grid-area: img;
     aspect-ratio: 3 / 2;
-    width: 300px;
+    width: var(--products-page-img-width);
     display: inline-block;
     border-radius: 1em;
     object-fit: cover;

@@ -14,7 +14,7 @@ input, label {
 
 input {
     margin-bottom: 2em;
-    width: 30em;
+    width: var(--input-width);
 }
 
 button {
@@ -91,6 +91,11 @@ button {
 .cart-product-name {
     flex-grow: 1;
     margin-left: 1em;
+}
+
+.cart-product-name > a {
+    width: var(--cart-product-title-width);
+    overflow-wrap: break-word;
 }
 
 .product-count {

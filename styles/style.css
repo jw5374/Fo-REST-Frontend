@@ -24,6 +24,18 @@ body {
     --accent-background: rgba(31, 111, 31, 0.336);
     --font-regular: NeuzitOfficeSRPro-Regular;
     --font-bold: NeuzitOfficeSR-Bold;
+
+    --logo-size: 400px;
+    --footer-height: 17em;
+
+    --input-width: 30em;
+
+    --product-container-long-margin: 2em;
+    --product-container-long-padding: 1em;
+    --products-page-img-width: 300px;
+
+    --cart-product-title-width: 13em;
+
     font-family: var(--font-regular);
     padding: 0;
     margin: 0;
@@ -44,7 +56,7 @@ a {
 }
 
 footer {
-    height: 17em;
+    height: var(--footer-height);
     background-color: var(--accent-color3);
     display: flex;
     align-items: center;
@@ -137,7 +149,7 @@ a.active-link::after {
 #home-link {
     all: unset;
     cursor: pointer;
-    width: 400px;
+    width: var(--logo-size);
     transition: filter 250ms ease-in-out;
 }
 
@@ -254,4 +266,179 @@ a.active-link::after {
 
 .bi {
     font-size: x-large;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+    body {
+        --logo-size: 100px;
+        --footer-height: max-content;
+
+        --input-width: 13em;
+
+        --product-container-long-margin: 0;
+        --product-container-long-padding: 1em;
+        --products-page-img-width: 100px;
+
+        --cart-product-title-width: 5em;
+
+        font-size: xx-small;
+    }
+    
+    footer {
+        flex-direction: column;
+        align-items: center;
+        padding: 0.75em;
+        margin: 0;
+    }
+
+    #company-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .info-container {
+        font-size: 1.5em;
+        padding-inline: 0;
+    }
+
+    .forest-logo-header {
+        transform: translateY(0%);
+    }
+
+    .forest-logo-footer {
+        height: 40%;
+        width: 100%;
+    }
+
+    /* products pages */
+
+    .product-link {
+        margin-inline: 0;
+    }
+
+    #individual-product-container {
+        grid-template-areas: 
+            "gallery gallery"
+            "action action";
+    }
+
+    .image-gallery {
+        width: 100vw;
+    }
+
+    #ind-prod-price {
+        font-size: 2em;
+    }
+
+    #add-to-cart {
+        width: 50%;
+    }
+
+    /* cart pages */
+
+    .cart-product {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-block: 2em;
+        margin: 0;
+    }
+
+    .cart-image {
+        width: 100px;
+    }
+
+    .cart-product-price {
+        font-size: 1.5em;
+    }
+
+    #checkout-container {
+        margin-inline: 0;
+    }
+
+    #checkout-container button {
+        font-size: 1em;
+    }
+
+    /* profile page */
+
+    #profile-container {
+        flex-grow: 0;
+        padding-inline: 1em;
+        gap: 2em;
+    }
+
+    #profile-address-container {
+        flex-grow: 1;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    body {
+        --logo-size: 350px;
+        --footer-height: max-content;
+
+        --input-width: 20em;
+
+        --product-container-long-margin: 0;
+        --product-container-long-padding: 1em;
+        --products-page-img-width: 150px;
+
+        font-size: small;
+    }
+    
+    footer {
+        flex-direction: column;
+        align-items: center;
+        padding: 0.75em;
+        margin: 0;
+    }
+
+    #company-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-container {
+        margin: 1em;
+        width: 17em;
+    }
+
+    .info-container {
+        font-size: 1.5em;
+        padding-inline: 0;
+    }
+
+    .forest-logo-header {
+        transform: translateY(-20%);
+    }
+
+    .forest-logo-footer {
+        height: 40%;
+        width: 100%;
+    }
+
+    /* products pages */
+
+    .product-link {
+        margin-inline: 0;
+    }
+
+    #individual-product-container {
+        grid-template-areas: 
+            "gallery gallery"
+            "action action";
+    }
+
+    .image-gallery {
+        width: 100vw;
+    }
+
+    #ind-prod-price {
+        font-size: 2em;
+    }
+
+    #add-to-cart {
+        width: 50%;
+    }
+
 }
