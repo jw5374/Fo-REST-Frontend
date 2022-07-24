@@ -51,6 +51,7 @@ function createCartItem(cartObj) {
 
     productCount.type = "number"
     productCount.min = 0
+    productCount.max = cartObj.product.count
     productCount.name = "productcount"
     productCount.value = cartObj.count
     productCount.classList.add("product-count")
@@ -94,6 +95,14 @@ function createCartItem(cartObj) {
     })
 
     productCount.addEventListener("change", () => {
+        let maxVal = parseInt(productCount.max)
+        let minVal = parseInt(productCount.min)
+        if(productCount.value > maxVal) {
+            productCount.value = maxVal
+        }
+        if(productCount.value < minVal) {
+            productCount.value = minVal
+        }
         let newval = productCount.value
         let difference = (cartObj.product.price * newval) - (cartObj.product.price * cartObj.count)
         document.getElementById("total-price").textContent = `Total: $${(parseFloat(document.getElementById("total-price").textContent.split("$")[1]) + difference).toFixed(2)}`

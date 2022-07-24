@@ -2,6 +2,7 @@ const termDisplay = document.getElementById("search-term")
 const productGallery = document.getElementById("product-gallery")
 const individualProductCount = document.getElementById("i-prod-count")
 const addToCartButton = document.getElementById("add-to-cart")
+const addToCartForm = document.getElementById("add-cart-form")
 
 let initialProdCount = 0
 
@@ -44,14 +45,15 @@ function populateProductData(prodObj) {
     prodDesc.textContent = prodObj.description
     prodPrice.textContent = "$" + prodObj.price.toFixed(2)
     stockCount.textContent = prodObj.count + " left"
+    individualProductCount.max = prodObj.count
     if(prodObj.count > 0) {
         stockStatus.classList.add("in-stock")
         stockStatus.textContent = "In Stock"
+        addToCartForm.classList.remove("disable")
+        addToCartButton.style.backgroundColor = ""
     } else {
         stockStatus.classList.add("out-of-stock")
         stockStatus.textContent = "Out of Stock"
-        addToCartButton.classList.add("disable")
-        addToCartButton.style.backgroundColor = "var(--text-color2)"
     }
 }
 
@@ -67,10 +69,10 @@ function fetchIndividualData() {
         individualProductCount.value = data.count
         initialProdCount = data.count
         fetchedCart = data.cartid
-        addToCartButton.addEventListener('click', updateItem)
+        addToCartForm.addEventListener('submit', updateItem)
     })
     .catch(() => {
-        addToCartButton.addEventListener('click', saveNewItem)
+        addToCartForm.addEventListener('submit', saveNewItem)
     })
 }
 
@@ -113,7 +115,8 @@ function createProdContainer(prodObj) {
     return linkContainer
 }
 
-function saveNewItem() {
+function saveNewItem(e) {
+    e.preventDefault()
     fetch(fetchPath + `/carts/${localStorage.getItem("forest-user")}`, {
         method: "POST",
         headers: {
@@ -136,7 +139,8 @@ function saveNewItem() {
     })
 }
 
-function updateItem() {
+function updateItem(e) {
+    e.preventDefault()
     fetch(fetchPath + `/carts/${localStorage.getItem("forest-user")}/item`, {
         method: "PUT",
         headers: {
@@ -182,14 +186,10 @@ if(qParams.get("item") != null) {
     if(isTokenCookiePresent()) {
         fetchIndividualData()
     } else {
-        addToCartButton.addEventListener('click', () => {
+        addToCartForm.addEventListener('submit', (e) => {
+            e.preventDefault()
             sessionStorage.setItem("previousproduct", qParams.get("item"))
             window.location.href = window.location.protocol + "//" + window.location.host + "/login.html"
         })
     }
-    window.addEventListener('pageshow', (event) => {
-        if (event.persisted) {
-            window.location.reload()
-        }
-    });
 }

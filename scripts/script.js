@@ -44,15 +44,6 @@ function populateCartCount() {
         cartCount.classList.add("hide")
         return
     }
-    if(localStorage.getItem("forest-cart-count") != null) {
-        cartCount.textContent = localStorage.getItem("forest-cart-count")
-        if(parseInt(cartCount.textContent) > 0) {
-            cartCount.classList.remove("hide");
-        } else {
-            cartCount.classList.add("hide");
-        }
-        return
-    }
     fetch(fetchPath + "/carts/" + localStorage.getItem("forest-user"), {
         method: "GET",
         headers: {
@@ -96,3 +87,9 @@ searchButton.addEventListener('click', () => {
 checkCookieValid()
 
 populateCartCount()
+
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+        window.location.reload()
+    }
+});
