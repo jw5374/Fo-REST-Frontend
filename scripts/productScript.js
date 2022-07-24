@@ -55,6 +55,25 @@ function populateProductData(prodObj) {
     }
 }
 
+function fetchIndividualData() {
+    fetch(fetchPath + `/carts/${localStorage.getItem("forest-user")}/${qParams.get("item")}`, {
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + getAuthCookie()
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        individualProductCount.value = data.count
+        initialProdCount = data.count
+        fetchedCart = data.cartid
+        addToCartButton.addEventListener('click', updateItem)
+    })
+    .catch(() => {
+        addToCartButton.addEventListener('click', saveNewItem)
+    })
+}
+
 function createProdContainer(prodObj) {
     let imgList = prodObj.imageList.split(',')
 
@@ -161,26 +180,17 @@ if(qParams.get("item") != null) {
     })
 
     if(isTokenCookiePresent()) {
-        fetch(fetchPath + `/carts/${localStorage.getItem("forest-user")}/${qParams.get("item")}`, {
-            method: "GET",
-            headers: {
-                "Authorization": "Bearer " + getAuthCookie()
-            }
-        })
-        .then(res => res.json())
-        .then(data => {
-            individualProductCount.value = data.count
-            initialProdCount = data.count
-            fetchedCart = data.cartid
-            addToCartButton.addEventListener('click', updateItem)
-        })
-        .catch(() => {
-            addToCartButton.addEventListener('click', saveNewItem)
-        })
+        fetchIndividualData()
     } else {
         addToCartButton.addEventListener('click', () => {
             sessionStorage.setItem("previousproduct", qParams.get("item"))
             window.location.href = window.location.protocol + "//" + window.location.host + "/login.html"
         })
     }
+    window.addEventListener('pageshow', (event) => {
+        if (event.persisted) {
+            console.log("here")
+            fetchIndividualData()
+        }
+    });
 }
