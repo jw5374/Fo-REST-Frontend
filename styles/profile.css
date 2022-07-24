@@ -18,5 +18,15 @@
 
 #logout-button {
     display: inline-block;
-    margin-top: 4.125em;
+}
+
+#profile-address-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: left;
+}
+
+#profile-address-container  * {
+    margin-block: 0.5em;
 }
