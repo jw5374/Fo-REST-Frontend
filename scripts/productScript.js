@@ -189,8 +189,7 @@ if(qParams.get("item") != null) {
     }
     window.addEventListener('pageshow', (event) => {
         if (event.persisted) {
-            console.log("here")
-            fetchIndividualData()
+            window.location.reload()
         }
     });
 }
