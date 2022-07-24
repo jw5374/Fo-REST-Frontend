@@ -21,7 +21,13 @@ registrationForm.addEventListener("submit", async (e) => {
     }).then((res) => {
         return res.text()
     }).then((data) => {
-        alert(data) // need to change this somehow
-        window.location.href = "login.html"
+        let main =  document.getElementsByTagName("main")[0]
+        let loginlink = document.createElement("a")
+        loginlink.href = "login.html"
+        loginlink.textContent = "Go to Login"
+        clearElements(document.getElementsByTagName("main")[0])
+        main.style.color = "green"
+        main.textContent = data
+        main.appendChild(loginlink)
     })
 })

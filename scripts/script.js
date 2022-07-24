@@ -5,6 +5,12 @@ const searchButton = document.querySelector(".bi.bi-search")
 const searchBar = document.getElementById("search-bar")
 const profile = document.querySelector(".bi.bi-person")
 
+function clearElements(container) {
+    if(container.firstElementChild) {
+        container.removeChild(container.lastElementChild)
+    }
+}
+
 function getAuthCookie() {
     for(let cookie of document.cookie.split(";")) {
         let cookieEntry = cookie.split("=")
@@ -55,8 +61,12 @@ function populateCartCount() {
     })
     .then(res => res.json())
     .then((data) => {
-        localStorage.setItem("forest-cart-count", data.length)
-        cartCount.textContent = data.length
+        let sum = 0
+        for(let obj of data) {
+            sum += obj.count
+        }
+        localStorage.setItem("forest-cart-count", sum)
+        cartCount.textContent = sum
         if(parseInt(cartCount.textContent) > 0) {
             cartCount.classList.remove("hide");
         } else {

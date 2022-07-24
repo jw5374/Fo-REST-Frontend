@@ -249,7 +249,6 @@ a.active-link::after {
     --text-color2: rgb(180, 180, 180);
     --text-color3: rgba(55, 55, 55, 0.3);
     --text-color-opposite: black;
-    --accent-color2: var(--accent-color);
     background-color: rgb(20, 20, 20);
 }
 

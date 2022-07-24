@@ -3,6 +3,8 @@ const productGallery = document.getElementById("product-gallery")
 const individualProductCount = document.getElementById("i-prod-count")
 const addToCartButton = document.getElementById("add-to-cart")
 
+let initialProdCount = 0
+
 let qParams = new URLSearchParams(window.location.search)
 
 let indProd;
@@ -48,6 +50,8 @@ function populateProductData(prodObj) {
     } else {
         stockStatus.classList.add("out-of-stock")
         stockStatus.textContent = "Out of Stock"
+        addToCartButton.classList.add("disable")
+        addToCartButton.style.backgroundColor = "var(--text-color2)"
     }
 }
 
@@ -108,7 +112,7 @@ function saveNewItem() {
     .then(res => res.json())
     .then(data => {
         fetchedCart = data.cartid
-        localStorage.setItem("forest-cart-count", cartcount+1)
+        localStorage.setItem("forest-cart-count", cartcount+data.count)
         window.location.href = window.location.protocol + "//" + window.location.host + "/cart.html"
     })
 }
@@ -125,6 +129,7 @@ function updateItem() {
             count: individualProductCount.value
         })
     }).then(() => {
+        localStorage.setItem("forest-cart-count", cartcount+(individualProductCount.value - initialProdCount))
         window.location.href = window.location.protocol + "//" + window.location.host + "/cart.html"
     })
 }
@@ -165,6 +170,7 @@ if(qParams.get("item") != null) {
         .then(res => res.json())
         .then(data => {
             individualProductCount.value = data.count
+            initialProdCount = data.count
             fetchedCart = data.cartid
             addToCartButton.addEventListener('click', updateItem)
         })
@@ -173,6 +179,7 @@ if(qParams.get("item") != null) {
         })
     } else {
         addToCartButton.addEventListener('click', () => {
+            sessionStorage.setItem("previousproduct", qParams.get("item"))
             window.location.href = window.location.protocol + "//" + window.location.host + "/login.html"
         })
     }

@@ -46,8 +46,7 @@ updateAddress.addEventListener('submit', (e) => {
             username: localStorage.getItem("forest-user"),
             shippingAddress: updateAddress.addressinput.value
         })
-    }).then(res => res.text()).then(data => { 
-        alert(data)
+    }).then(res => res.text()).then(() => { 
         window.location.reload()
     })
 })

@@ -2,6 +2,7 @@ const cartproducts = document.getElementById("cart-item-container")
 const totalPrice = document.getElementById("total-price")
 const checkoutButton = document.getElementById("checkout-button")
 const saveCart = document.getElementById("save-cart-button")
+const cartMessage = document.getElementById("cart-message")
 
 let cartObjs;
 
@@ -86,7 +87,7 @@ function createCartItem(cartObj) {
         })
         .then(res => res.json())
         .then(() => {
-            cartCount.textContent = parseInt(cartCount.textContent) - 1
+            cartCount.textContent = parseInt(cartCount.textContent) - parseInt(deleteButton.previousElementSibling.previousElementSibling.value)
             localStorage.setItem("forest-cart-count", cartCount.textContent)
             removeCart(productContainer.dataset.cartid)
         })
@@ -114,7 +115,6 @@ if(!isTokenCookiePresent()) {
     window.location.href = "login.html"
 }
 
-
 fetch(fetchPath + "/carts/" + localStorage.getItem("forest-user"), {
     method: "GET",
     headers: {
@@ -139,7 +139,18 @@ saveCart.addEventListener('click', () => {
         },
         body: JSON.stringify(cartObjs)
     }).then(() => {
-        window.location.href = "index.html"
+        cartMessage.style.color = "green"
+        cartMessage.textContent = "You've successfully saved your cart items!"
+        let sum = 0
+        for(let obj of cartObjs) {
+            sum += parseInt(obj.count)
+        }
+        cartCount.textContent = sum
+        localStorage.setItem("forest-cart-count", cartCount.textContent)
+        saveCart.classList.add("disable")
+        setTimeout(() => {
+            saveCart.classList.remove("disable")
+        }, 2000)
     })
 })
 
@@ -157,7 +168,14 @@ checkoutButton.addEventListener('click', () => {
         },
         body: JSON.stringify(cartObjs)
     }).then(() => {
+        let sum = 0;
+        for(let obj of cartObjs) {
+            sum += obj.count
+        }
+        cartMessage.style.color = "green"
+        cartMessage.textContent = "You've successfully purchased " + sum  + " items!"
         cartObjs = []
-        window.location.reload()
+        cartCount.classList.add("hide")
+        clearElements(cartproducts)
     })
 })
