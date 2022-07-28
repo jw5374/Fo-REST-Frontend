@@ -188,6 +188,6 @@ checkoutButton.addEventListener('click', () => {
         cartMessage.textContent = "You've successfully purchased " + sum  + " items!"
         cartObjs = []
         cartCount.classList.add("hide")
-        clearElements(cartproducts)
     })
+    clearElements(document.getElementById("cart-item-container"))
 })

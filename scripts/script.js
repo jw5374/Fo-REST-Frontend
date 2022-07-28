@@ -6,7 +6,7 @@ const searchBar = document.getElementById("search-bar")
 const profile = document.querySelector(".bi.bi-person")
 
 function clearElements(container) {
-    if(container.firstElementChild) {
+    while(container.firstElementChild) {
         container.removeChild(container.lastElementChild)
     }
 }
